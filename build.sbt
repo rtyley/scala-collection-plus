@@ -5,6 +5,10 @@ lazy val baseSettings = Seq(
   organization := "com.madgag",
   licenses := Seq("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
   publishTo := sonatypePublishToBundle.value,
+  scmInfo := Some(ScmInfo(
+    url("https://github.com/rtyley/scala-collection-plus"),
+    "scm:git:git@github.com:rtyley/scala-collection-plus.git"
+  )),
   scalacOptions ++= Seq("-deprecation", "-Xlint", "-unchecked")
 )
 
@@ -13,13 +17,6 @@ name := "scala-collection-plus-root"
 description := "A few odds and ends to replace mapViews"
 
 scalaVersion in ThisBuild := "2.13.1"
-
-scmInfo := Some(ScmInfo(
-  url("https://github.com/rtyley/scala-collection-plus"),
-  "scm:git:git@github.com:rtyley/scala-collection-plus.git"
-))
-
-licenses := Seq("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0"))
 
 lazy val collectionPlus = project.in(file("collection-plus")).settings(
   baseSettings,
