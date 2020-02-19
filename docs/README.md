@@ -1,5 +1,7 @@
 # scala-collection-plus
 
+[![Build Status](https://travis-ci.org/rtyley/scala-collection-plus.svg?branch=master)](https://travis-ci.org/rtyley/scala-collection-plus)
+
 A few extras to handle Scala 2.13's deprecation of `.mapValues()`
 
 I'm just a developer, standing in front of a Scala v2.13 `Map`, asking it to map it's values.

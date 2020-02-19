@@ -1,4 +1,6 @@
-# scala-213-collections-plus
+# scala-collection-plus
+
+[![Build Status](https://travis-ci.org/rtyley/scala-collection-plus.svg?branch=master)](https://travis-ci.org/rtyley/scala-collection-plus)
 
 A few extras to handle Scala 2.13's deprecation of `.mapValues()`
 
@@ -31,6 +33,18 @@ m.mapV(f)
 ```
 
 ## `groupUp`
+
+Scala 2.13 introduced 
+[`groupMap` & `groupMapReduce`](https://docs.scala-lang.org/overviews/core/collections-migration-213.html#are-there-new-operations-on-collections)
+(see original GitHub [Issue](https://github.com/scala/collection-strawman/issues/42) &
+[PR](https://github.com/scala/collection-strawman/pull/253)) which potentially are another
+way to avoid the verbosity of Scala 2.13. In the codebase I'm working on, there were
+unfortunately only a few examples where they were applicable, and more than twice as many
+where a new `groupUp(k)(g)` method, equivalent to `s.groupBy(k).view.mapValues(g).toMap`,
+would be useful - the difference is that `groupMap` requires you to `map` over individual
+elements in each collection that forms a value in the `Map`, whereas `groupUp` allows you
+to perform an operation **other** than `map`. In the codebase I'm working on, that turns
+out to be much more useful.
 
 ```scala
 val s = Seq("foo", "foo", "bar", "bang")
