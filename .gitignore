@@ -23,6 +23,7 @@ dist
 
 # sbt specific
 .cache/
+.bsp/
 .history/
 .lib/
 dist/*
