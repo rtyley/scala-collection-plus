@@ -1,7 +1,7 @@
-addSbtPlugin("com.github.gseitz" % "sbt-release" % "1.0.11")
+addSbtPlugin("com.github.sbt" % "sbt-release" % "1.0.15")
 
-addSbtPlugin("com.jsuereth" % "sbt-pgp" % "1.1.2")
+addSbtPlugin("com.github.sbt" % "sbt-pgp" % "2.1.2")
 
-addSbtPlugin("org.xerial.sbt" % "sbt-sonatype" % "3.8")
+addSbtPlugin("org.xerial.sbt" % "sbt-sonatype" % "3.9.7")
 
-addSbtPlugin("org.scalameta" % "sbt-mdoc" % "2.1.0" )
+addSbtPlugin("org.scalameta" % "sbt-mdoc" % "2.2.20" )

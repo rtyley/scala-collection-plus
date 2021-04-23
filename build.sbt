@@ -16,7 +16,7 @@ name := "scala-collection-plus-root"
 
 description := "A few odds and ends to replace mapViews"
 
-scalaVersion in ThisBuild := "2.13.5"
+ThisBuild / scalaVersion := "2.13.5"
 
 lazy val collectionPlus = project.in(file("collection-plus")).settings(
   baseSettings,
