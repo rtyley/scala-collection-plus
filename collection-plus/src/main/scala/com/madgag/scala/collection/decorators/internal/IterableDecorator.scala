@@ -9,7 +9,7 @@ class IterableDecorator[C, I <: IsIterable[C]](coll: C)(implicit val it: I) {
   private val iterOps = it(coll)
 
   private val newMutableBuilder: () => MutableBuilder = iterOps match {
-    case mapOps: MapOps[_, _ , _ , C] =>
+    case mapOps: MapOps[_, _ , _ , _] =>
       () => mapOps.mapFactory.newBuilder.asInstanceOf[MutableBuilder]
     case _ =>
       () => iterOps.iterableFactory.newBuilder.asInstanceOf[MutableBuilder]

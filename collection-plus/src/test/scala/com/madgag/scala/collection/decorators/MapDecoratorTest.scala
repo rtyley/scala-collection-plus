@@ -1,10 +1,12 @@
 package com.madgag.scala.collection.decorators
 
-import org.scalatest.{Assertion, FlatSpec, Matchers}
+import org.scalatest.Assertion
+import org.scalatest.flatspec._
+import org.scalatest.matchers._
 
 import scala.collection.immutable.SortedMap
 
-class MapDecoratorTest extends FlatSpec with Matchers {
+class MapDecoratorTest extends AnyFlatSpec with should.Matchers {
 
   val m = Map("foo" -> 5, "bar" -> 10)
 

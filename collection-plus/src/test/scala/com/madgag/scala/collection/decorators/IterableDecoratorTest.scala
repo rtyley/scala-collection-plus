@@ -1,10 +1,11 @@
 package com.madgag.scala.collection.decorators
 
-import org.scalatest.{FlatSpec, Matchers}
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should
 
 import scala.collection.immutable.SortedSet
 
-class IterableDecoratorTest extends FlatSpec with Matchers {
+class IterableDecoratorTest extends AnyFlatSpec with should.Matchers {
 
   val s = Seq("aa", "aaa", "aaaaa", "bbb", "bb")
 

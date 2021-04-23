@@ -9,7 +9,7 @@ lazy val baseSettings = Seq(
     url("https://github.com/rtyley/scala-collection-plus"),
     "scm:git:git@github.com:rtyley/scala-collection-plus.git"
   )),
-  scalacOptions ++= Seq("-deprecation", "-Xlint", "-unchecked")
+  scalacOptions ++= Seq("-deprecation", "-unchecked")
 )
 
 name := "scala-collection-plus-root"
@@ -21,7 +21,8 @@ ThisBuild / scalaVersion := "2.13.5"
 lazy val collectionPlus = project.in(file("collection-plus")).settings(
   baseSettings,
   name := "scala-collection-plus",
-  libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.8" % "test"
+  crossScalaVersions := Seq(scalaVersion.value, "3.0.0-RC3"),
+  libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.8" % Test
 )
 
 lazy val docs = project.in(file("collection-plus-docs")) // important: it must not be docs/
@@ -38,7 +39,7 @@ lazy val collectionPlusRoot = (project in file("."))
   publishArtifact := false,
   publish := {},
   publishLocal := {},
-  releaseCrossBuild := false, // true if you cross-build the project for multiple Scala versions
+  releaseCrossBuild := true, // true if you cross-build the project for multiple Scala versions
   releaseProcess := Seq[ReleaseStep](
     checkSnapshotDependencies,
     inquireVersions,
@@ -47,7 +48,8 @@ lazy val collectionPlusRoot = (project in file("."))
     setReleaseVersion,
     commitReleaseVersion,
     tagRelease,
-    releaseStepCommand("publishSigned"),
+    // For non cross-build projects, use releaseStepCommand("publishSigned")
+    releaseStepCommandAndRemaining("+publishSigned"),
     releaseStepCommand("sonatypeBundleRelease"),
     setNextVersion,
     commitNextVersion,
