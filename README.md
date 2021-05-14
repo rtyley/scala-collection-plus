@@ -1,7 +1,7 @@
 # scala-collection-plus
 
 [![scala-collection-plus artifacts](https://index.scala-lang.org/rtyley/scala-collection-plus/scala-collection-plus/latest-by-scala-version.svg)](https://index.scala-lang.org/rtyley/scala-collection-plus/scala-collection-plus/)
-[![Build Status](https://travis-ci.org/rtyley/scala-collection-plus.svg?branch=master)](https://travis-ci.org/rtyley/scala-collection-plus)
+[![Build Status](https://travis-ci.com/rtyley/scala-collection-plus.svg?branch=master)](https://travis-ci.com/rtyley/scala-collection-plus)
 
 A few extras to handle Scala 2.13's deprecation of `.mapValues()`
 
