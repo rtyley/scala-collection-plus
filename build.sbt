@@ -21,8 +21,8 @@ ThisBuild / scalaVersion := "2.13.5"
 lazy val collectionPlus = project.in(file("collection-plus")).settings(
   baseSettings,
   name := "scala-collection-plus",
-  crossScalaVersions := Seq(scalaVersion.value, "3.0.0-RC3"),
-  libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.8" % Test
+  crossScalaVersions := Seq(scalaVersion.value, "3.0.0"),
+  libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.9" % Test
 )
 
 lazy val docs = project.in(file("collection-plus-docs")) // important: it must not be docs/
