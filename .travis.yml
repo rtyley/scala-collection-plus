@@ -1,9 +1,11 @@
 language: scala
 scala:
    - 2.13.5
+   - 3.0.0-RC3
 
 jdk:
   - openjdk8
+  - openjdk11
 
 before_cache:
   - rm -fv $HOME/.ivy2/.sbt.ivy.lock
