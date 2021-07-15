@@ -39,7 +39,7 @@ Scala 2.13 introduced
 [`groupMap` & `groupMapReduce`](https://docs.scala-lang.org/overviews/core/collections-migration-213.html#are-there-new-operations-on-collections)
 (see original GitHub [Issue](https://github.com/scala/collection-strawman/issues/42) &
 [PR](https://github.com/scala/collection-strawman/pull/253)) which potentially are another
-way to avoid the verbosity of `mapValues` Scala 2.13. In the codebase I'm working on, there
+way to avoid the verbosity of `mapValues` in Scala 2.13. In the codebase I'm working on, there
 were unfortunately only a few examples where they were applicable.
  
 There were more than twice as many opportunities to use a new `groupUp(k)(g)` method,
