@@ -5,7 +5,7 @@
 
 A few extras to handle Scala 2.13's deprecation of `.mapValues()`
 
-I'm just a developer, standing in front of a Scala v2.13 `Map`, asking it to map it's values.
+I'm just a developer, standing in front of a Scala v2.13 `Map`, asking it to map its values.
 
 
 ```scala
