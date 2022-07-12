@@ -1,44 +1,32 @@
-
-
-lazy val baseSettings = Seq(
-  scalaVersion := "2.13.6",
-  organization := "com.madgag",
-  licenses := Seq("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
-  publishTo := sonatypePublishToBundle.value,
-  scmInfo := Some(ScmInfo(
-    url("https://github.com/rtyley/scala-collection-plus"),
-    "scm:git:git@github.com:rtyley/scala-collection-plus.git"
-  )),
-  scalacOptions ++= Seq("-deprecation", "-unchecked")
-)
+import ReleaseTransformations.*
+import sbtversionpolicy.withsbtrelease.ReleaseVersion
 
 name := "scala-collection-plus-root"
 
 description := "A few odds and ends to replace mapViews"
 
-ThisBuild / scalaVersion := "2.13.6"
+ThisBuild / scalaVersion := "2.13.16"
+ThisBuild / crossScalaVersions := Seq(scalaVersion.value, "3.3.4")
 
 lazy val collectionPlus = project.in(file("collection-plus")).settings(
-  baseSettings,
   name := "scala-collection-plus",
-  crossScalaVersions := Seq(scalaVersion.value, "3.0.1"),
-  libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.9" % Test
+  organization := "com.madgag",
+  licenses := Seq(License.Apache2),
+  scalacOptions ++= Seq("-deprecation", "-unchecked", "-release:11"),
+  libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.19" % Test,
+  Test/testOptions += Tests.Argument(
+    TestFrameworks.ScalaTest,
+    "-u", s"test-results/scala-${scalaVersion.value}"
+  )
 )
 
 lazy val docs = project.in(file("collection-plus-docs")) // important: it must not be docs/
   .dependsOn(collectionPlus)
   .enablePlugins(MdocPlugin)
 
-import ReleaseTransformations._
-
-lazy val collectionPlusRoot = (project in file("."))
-  .aggregate(
-    collectionPlus
-  )
-  .settings(baseSettings).settings(
-  publishArtifact := false,
-  publish := {},
-  publishLocal := {},
+lazy val collectionPlusRoot = (project in file(".")).aggregate(collectionPlus).settings(
+  publish / skip := true,
+  releaseVersion := ReleaseVersion.fromAggregatedAssessedCompatibilityWithLatestRelease().value,
   releaseCrossBuild := true, // true if you cross-build the project for multiple Scala versions
   releaseProcess := Seq[ReleaseStep](
     checkSnapshotDependencies,
@@ -48,11 +36,7 @@ lazy val collectionPlusRoot = (project in file("."))
     setReleaseVersion,
     commitReleaseVersion,
     tagRelease,
-    // For non cross-build projects, use releaseStepCommand("publishSigned")
-    releaseStepCommandAndRemaining("+publishSigned"),
-    releaseStepCommand("sonatypeBundleRelease"),
     setNextVersion,
-    commitNextVersion,
-    pushChanges
+    commitNextVersion
   )
 )
