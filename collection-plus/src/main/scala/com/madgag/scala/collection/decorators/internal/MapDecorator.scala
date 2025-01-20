@@ -11,4 +11,5 @@ class MapDecorator[C, M <: IsMap[C]](coll: C)(implicit val map: M) {
    */
   def mapV[U](f: map.V => U): Map[map.K, U] = map(coll).toMap.transform { case (_,v) => f(v) }
 
+  def filterK(p: map.K => Boolean): Map[map.K, map.V] = map(coll).view.filterKeys(p).toMap
 }
